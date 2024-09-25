@@ -1,6 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Planet {
     String name;
-    double mass;
+    private double mass;
+    private List<Moon> moons = new ArrayList<>();
 
     public Planet(String Name, double mass) {
         this.name = Name;
@@ -13,5 +17,17 @@ public class Planet {
                 "name='" + name + '\'' +
                 ", mass=" + mass +
                 '}';
+    }
+
+    public double getMass() {
+        return mass;
+    }
+
+    public void addMoon(Moon m){
+        this.moons.add(m);
+    }
+
+    public List<Moon> getMoons() {
+        return moons;
     }
 }

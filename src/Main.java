@@ -23,12 +23,33 @@ example4();
 
         System.out.println(planetList);
 
-    }
-    class Astronomer implements Comparator<Planet> {
-        @Override
-        public int compare(Planet planet1, Planet t2) {
-            return Double.compare(planet1.mass(), planet2.mass());
-        }
+        Planet earth = planetList.get(2);
+        System.out.println(earth.getMoons());
+        earth.addMoon(new Moon("Луна", 7.35e22, "серый"));
+        System.out.println(earth.getMoons());
+
+        Planet mars = planetList.get(3);
+        mars.addMoon(new Moon("Фобос", 123, ""));
+        mars.getMoons().add(new Moon("Деймос", 222, ""));
+
+        planetList.sort(new Zvezdochet());
+        System.out.println(planetList);
+
     }
 
+
+}
+
+class Astronome implements Comparator<Planet> {
+    @Override
+    public int compare(Planet planet1, Planet planet2) {
+        return Double.compare(planet1.getMass(), planet2.getMass());
+    }
+}
+
+class Zvezdochet implements Comparator<Planet> {
+    @Override
+    public int compare(Planet planet1, Planet planet2) {
+        return planet1.name.compareTo(planet2.name);
+    }
 }
