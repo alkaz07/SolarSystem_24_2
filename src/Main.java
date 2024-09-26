@@ -5,11 +5,23 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-example4();
+       // example1();
+        example2();
     }
 
+    private static void example2() {
+        List<Planet> planetList = makeSolarSystem();
+        System.out.println(planetList);
+        //сортировка по числу спутников
+       // planetList.sort((p1, p2) -> p1.getMoons().size()-p2.getMoons().size());
+        planetList.sort(Comparator.comparingInt(p -> p.getMoons().size()));
+        System.out.println(planetList);
+//        сортировка по суммарной массе спутника
+        planetList.sort(Comparator.comparingDouble(p->p.getTotalMoonsMass()));
+        System.out.println(planetList);
+    }
 
-    private static void example4() {
+    public static List<Planet> makeSolarSystem(){
         List<Planet> planetList = new ArrayList<>();
 
         planetList.add(new Planet("Mercury", 3.302e23));
@@ -21,18 +33,20 @@ example4();
         planetList.add(new Planet("Uran", 8.6832e25));
         planetList.add(new Planet("Neptune", 1.0243e26));
 
-        System.out.println(planetList);
-
         Planet earth = planetList.get(2);
-        System.out.println(earth.getMoons());
         earth.addMoon(new Moon("Луна", 7.35e22, "серый"));
-        System.out.println(earth.getMoons());
-
         Planet mars = planetList.get(3);
         mars.addMoon(new Moon("Фобос", 123, ""));
         mars.getMoons().add(new Moon("Деймос", 222, ""));
+        return planetList;
+    }
 
+    private static void example1() {
+        List<Planet> planetList = makeSolarSystem();
+        System.out.println(planetList);
         planetList.sort(new Zvezdochet());
+        System.out.println(planetList);
+        planetList.sort(new Astronome());
         System.out.println(planetList);
 
     }

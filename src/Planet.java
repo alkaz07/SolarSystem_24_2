@@ -30,4 +30,11 @@ public class Planet {
     public List<Moon> getMoons() {
         return moons;
     }
+
+    public double getTotalMoonsMass(){
+        double s =0;
+        for (Moon m: moons)
+            s+= m.mass;
+        return s;
+    }
 }
